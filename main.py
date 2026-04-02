@@ -3,7 +3,7 @@ from HelperFunctions import HVLCS
 
 
 def main():
-    test = HVLCS("acbdbef", "dcfebbfca")
+    test = HVLCS("baac", "bcaa")
     test.findHVLCS()
     return
 
