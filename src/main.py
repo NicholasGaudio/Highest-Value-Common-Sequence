@@ -9,8 +9,8 @@ def main():
     charValues = {}
     stringA = ""
     stringB = ""
-    Q1 = True
-    ManualTest = False
+    Q1 = False
+    ManualTest = True
 
     if ManualTest:
         charValues, stringA, stringB = InputHandling("src\\Inputs\\manualTest.txt", charValues, stringA, stringB)

@@ -84,5 +84,7 @@ class HVLCS:
 
 
     def findHVLCS(self):
+        with open("src\Outputs\out.txt", "w") as f:
+            f.write(f"{self.OPT(0, 0)}\n{self.backtrack()}")
         print(f"{self.OPT(0, 0)}\n{self.backtrack()}")
         return

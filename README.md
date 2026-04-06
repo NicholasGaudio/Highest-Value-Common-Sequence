@@ -1,4 +1,17 @@
 # Highest-Value-Common-Sequence
+John (Jack) Kellen | UFID: 85033113
+Nicholas Gaudio | UFID: 26110582
+
+## Compile Instructions
+To work with this project:
+1. Clone repository to local machine
+2. Open the project in a python IDE
+3. Open the main.py file and run it
+
+The default setup will read an input from the manualTest.txt file found in src/Inputs. Changes here will affect what is run in the program.
+
+We assume an input format in manualTest.txt equivalent to the assignment specifications. The output will be be put into src/Outputs/out.txt and will overwrite the previous values put there. Note that running multiple times will result in only the final output being stored there.
+
 
 ## Q1 - Empirical Comparison
 ![Chart showing runtimes over 10 trials](/Images//Runtime.png)
