@@ -31,26 +31,19 @@ def InputHandling(filepath, charValues, stringA, stringB):
 
 
 def InputGenerator(filename,):
-    ## create input like the one in the inputTest.txt file but strings of at least 25 chars
-    
-    # set a random k (number of defined chars)
-    k = random.randint(1, 25)
-    print(f"k: {k}")
-
+    k = random.randint(5, 10)
     with open(filename, "w") as f:
         f.write(f"{k}\n")
 
-        # create a random amount of chars and values = to k
         charValues = {}
         while len(charValues) < k:
-            char = chr(random.randint(97, 122)) # random lowercase letter
+            char = chr(random.randint(97, 122)) 
             if char in charValues:
                 continue
-            value = random.randint(1, 10) # random value between 1 and 10
+            value = random.randint(1, 10) 
             charValues[char] = value
             f.write(f"{char} {value}\n")
         
-        # create two random strings of at least 25 chars using the defined chars
         chars = list(charValues.keys())
         stringA = ''.join(random.choice(chars) for _ in range(25))
         stringB = ''.join(random.choice(chars) for _ in range(25))
