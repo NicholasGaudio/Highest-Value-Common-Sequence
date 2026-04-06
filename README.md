@@ -19,6 +19,8 @@ This covers all potential cases. At each index pairing the value can be stored f
 ## Q3 - Big Oh
 
 ### Pseudocode:
+
+```
 //These all exist within a class that stores A, B, and dictionaries M for memoization and C for character values
 //The user initializes those values with the given strings and calls HVLCS
 
@@ -69,6 +71,7 @@ backtrack():
 findHVLCS(self):
         print(f"{OPT(0, 0)}\n{backtrack()}")
         return
+```
 
 ### Runtime:
 The Runtime for the algorithm would be O(n * m) where n is the length of string A and m is the length of string B. This is because in the worst case scenario where no characters are shared, the program will go through every index combination of A and B before realizing this making OPT(n * m). Backtracking is only O(n) since it is a single loop that runs through the memoization dictionary and is outscaled by the OPT function.
