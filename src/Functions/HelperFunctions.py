@@ -21,40 +21,68 @@ class HVLCS:
     
     # Dictionary that is built during runtime
     # Store the values as keys and the subsequence correlated to that as a value
-    evilMap = {0 : ""}
+    evilMap = {}
+    oldEvilMap = {0: ""}
 
     def __init__(self, charValues, stringA, stringB):
         self.charValues = charValues
         self.stringA = stringA
         self.stringB = stringB
+        self.evilMap = {}
+        self.sequences = {}
 
     def tester(self):
         print(f"Test Constructor:\nString A: {self.stringA} | String B: {self.stringB}\n")
         self.maxValue = self.OPT(0, 0)
         print(self.maxValue)
 
-
-    # v is the running value that will be tracked throughout this
-    # j is the index in stringA which we are looking
-    def OPT(self, v, j):
-        substring = self.evilMap[v]
-        if j == len(self.stringA):
-            #print(f"v: {v} | substring: {substring}")
+    # goes through to find HVLCS value but doesn't get actual HVLCS
+    def OPT(self, i, j):
+        if (i, j) in self.evilMap:
+            return self.evilMap[(i, j)]
+        
+        if (i == len(self.stringA) or j == len(self.stringB)):
             return 0
 
-        # If the subsequence + the next character is a subsequence in stringB check whether to add it or not
-        if findSubsequence(substring + self.stringA[j], self.stringB):
-            self.evilMap[v + self.charValues[self.stringA[j]]] = substring + self.stringA[j]
-            v =  max(self.charValues[self.stringA[j]] + self.OPT(v + self.charValues[self.stringA[j]], j+1),
-                      self.OPT(v, j+1))
+        value = 0
+        if (self.stringA[i] == self.stringB[j]):
+            value = (self.charValues[self.stringA[i]] + self.OPT(i+1, j+1))
+        
         else:
-            v = self.OPT(v, j+1)
+            v1 = self.OPT(i+1, j)
+            v2 = self.OPT(i, j+1)
+            value = (max(v1, v2))
 
-        return v
+        self.evilMap[(i, j)] = value
+        return value
+    
+    # Runs after OPT to find the subsequence through backtracking
+    def backtrack(self):
+        i = 0
+        j = 0
+        subsequence = ""
+        while i < (len(self.stringA)) and j < (len(self.stringB)):
+            if (self.stringA[i] == self.stringB[j]):
+                subsequence += self.stringA[i]
+                i+=1
+                j+=1
+            else:
+                if i+1 < len(self.stringA) and j+1 < len(self.stringB):
+                    if self.evilMap[(i+1, j)] > self.evilMap[(i, j+1)]:
+                        i+=1
+                    else:
+                        j+=1
+                else:
+                    if i+1 < len(self.stringA):
+                        i+=1
+                    else:
+                        if j+1 < len(self.stringB):
+                            j+=1
+                        else:
+                            break
+        return subsequence
+
 
     def findHVLCS(self):
-        #print(f"Maximum Value Longest Common Subsequence for - String A: {self.stringA} | String B: {self.stringB}")
-        self.maxValue = self.OPT(0, 0)
-        print(f"{self.maxValue}")
-        print(f"{self.evilMap[self.maxValue]}")
+        print(f"{self.OPT(0, 0)}\n{self.backtrack()}")
         return
