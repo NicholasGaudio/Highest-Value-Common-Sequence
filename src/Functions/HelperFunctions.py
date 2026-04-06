@@ -17,20 +17,14 @@ class HVLCS:
     maxValue = 0
 
     #Test Dictionary for Character Values - Hardcoded for Now
-    charValues = {
-        'a' : 2, 
-        'b' : 4,
-        'c' : 5,
-        'd' : 17,
-        'e' : 1,
-        'f' : 3 
-        }
+    charValues = {}
     
     # Dictionary that is built during runtime
     # Store the values as keys and the subsequence correlated to that as a value
     evilMap = {0 : ""}
 
-    def __init__(self, stringA, stringB):
+    def __init__(self, charValues, stringA, stringB):
+        self.charValues = charValues
         self.stringA = stringA
         self.stringB = stringB
 

@@ -1,4 +1,4 @@
-def InputHandling(filepath):
+def InputHandling(filepath, charValues, stringA, stringB):
     with open(filepath, 'r') as input:
         lines = input.readlines()
 
@@ -11,16 +11,18 @@ def InputHandling(filepath):
         print("Error: Invalid input format.")
         return
     
-
-    print(f"Value of k: {k}")
-    print(f"Rows: {rows}")
-    print(f"Number of rows: {len(rows)}")
-    # # Input error handling
-    # if (len(rows) != 2):
-    #     print("Error: Number of requests does not match the number of rows in the input file.")
-    #     return
-    # if (len(rows[1]) != m):
-    #     print("Error: Number of requests does not match the number of requests specified in the input file.")
-    #     return
+    # Ensure # rows matches
+    if (len(rows) != k + 3):
+        print("Error: Number of rows does not match the number of rows required in the input file.")
+        return
     
-    # return k, m, rows
+    for i in range(1, k + 1):
+        try:
+            charValues[rows[i][0]] = int(rows[i][1])
+        except (IndexError, ValueError):
+            print("Error: Invalid input format for character values.")
+            return
+    stringA = rows[k + 1][0]
+    stringB = rows[k + 2][0]
+    
+    return charValues, stringA, stringB

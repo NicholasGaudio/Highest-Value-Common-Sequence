@@ -4,8 +4,13 @@ from Functions.InputReader import InputHandling
 
 
 def main():
-    InputHandling("inputTest.txt")
-    test = HVLCS("baac", "bcaa")
+    charValues = {}
+    stringA = ""
+    stringB = ""
+    charValues, stringA, stringB = InputHandling("src\\Inputs\\inputTest.txt", charValues, stringA, stringB)
+    print("String A: " + stringA)
+    print("String B: " + stringB)
+    test = HVLCS(charValues, stringA, stringB)
     test.findHVLCS()
     return
 
